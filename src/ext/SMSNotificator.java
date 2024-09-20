@@ -12,14 +12,14 @@ public class SMSNotificator implements Notificator {
     }
 
     @Override
-    public String toString() {
-        return "SMS notification";
-    }
-
-    @Override
     public void notify(Task task, Member member, Object msg) {
         // TODO: how's this different from the other one?
         System.out.println("Soy SMSNotificator y me notificaron: \n" + msg.toString());
+    }
+
+    @Override
+    public String toString() {
+        return "SMS notification";
     }
 
 }
