@@ -1,6 +1,7 @@
 package ext;
 
 import core.Member;
+import core.NotificationDTO;
 import core.Notificator;
 import core.Task;
 
@@ -9,14 +10,14 @@ import core.Task;
 public class SMSNotificator implements Notificator {
 
     @Override
-    public void update(Task task, Member member, Object obj) {
-        notify(task, member, obj);
+    public void update(NotificationDTO notificationDTO) {
+        notify(notificationDTO);
     }
 
     @Override
-    public void notify(Task task, Member member, Object msg) {
+    public void notify(NotificationDTO notificationDTO) {
         // TODO: how's this different from the other one?
-        System.out.println("Soy SMSNotificator y me notificaron: \n" + msg.toString());
+        System.out.println("Soy SMSNotificator y me notificaron: \n" + notificationDTO.getMessage());
     }
 
     @Override

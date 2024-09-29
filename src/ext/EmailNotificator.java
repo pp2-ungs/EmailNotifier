@@ -1,6 +1,7 @@
 package ext;
 
 import core.Member;
+import core.NotificationDTO;
 import core.Notificator;
 import core.Task;
 import jakarta.mail.MessagingException;
@@ -8,20 +9,20 @@ import jakarta.mail.MessagingException;
 public class EmailNotificator implements Notificator {
 
     @Override
-    public void update(Task task, Member member, Object obj) {
-        notify(task, member, obj);
+    public void update(NotificationDTO notificationDTO) {
+        notify(notificationDTO);
     }
 
     @Override
-    public void notify(Task task, Member member, Object msg) {
+    public void notify(NotificationDTO notificationDTO) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     new Email(
-                            member.getEmail(),
+                            notificationDTO.getMember().getEmail(),
                             String.format("TASkOcupado: Tenés una nueva tarea!"),
-                            String.format("Hola %s:\n\nSe te asignó la tarea %s.\n\nTASkOcupado,\nSaludos!", member.getName(), task.getDescription())
+                            String.format("Hola %s:\n\nSe te asignó la tarea %s.\n\nTASkOcupado,\nSaludos!", notificationDTO.getMember().getName(), notificationDTO.getTask().getDescription())
                     ).send();
                 } catch (MessagingException ex) {
                     System.out.println(ex);
@@ -30,7 +31,7 @@ public class EmailNotificator implements Notificator {
             }
         }).start();
         //go end
-        System.out.println("Soy EmailNotificator y me notificaron: \n" + msg.toString());
+        System.out.println("Soy EmailNotificator y me notificaron: \n" + notificationDTO.getMessage());
     }
 
     @Override
