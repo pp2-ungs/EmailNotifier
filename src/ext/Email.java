@@ -15,14 +15,14 @@ import jakarta.mail.internet.MimeMultipart;
 
 public class Email {
 
-    private final String username;
+    private final String sender;
     private final String password;
     private final String to;
     private final String subject;
     private final String msg;
 
     public Email(String to, String subject, String msg) {
-        this.username = "taskocupado@gmail.com";
+        this.sender = "taskocupado@gmail.com";
         this.password = "alop xxap psxj ekwe";
         this.to = to;
         this.subject = subject;
@@ -38,11 +38,10 @@ public class Email {
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "465");
         
-        Session session = Session.getInstance(
-                props, new jakarta.mail.Authenticator() {
+        Session session = Session.getInstance(props, new jakarta.mail.Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(username, password);
+                    return new PasswordAuthentication(sender, password);
                 }
             }
         );
@@ -50,7 +49,7 @@ public class Email {
         session.setDebug(false);
 
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(username));
+        message.setFrom(new InternetAddress(sender));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 
         //sub

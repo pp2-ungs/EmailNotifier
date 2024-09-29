@@ -4,6 +4,8 @@ import core.Member;
 import core.Notificator;
 import core.Task;
 
+// Para mí, en este proyecto debería ir una sola extensión.
+// DELETEME
 public class SMSNotificator implements Notificator {
 
     @Override
