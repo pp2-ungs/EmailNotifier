@@ -8,7 +8,7 @@ public class SMSNotificator implements Observer {
 
     @Override
     public void update(Object event) {
-        System.out.println("Soy SMSNotificator y me notificaron: \n" + event);
+        System.out.println("[debuggin] SMSNotificator update: \n" + event);
     }
 
     @Override
