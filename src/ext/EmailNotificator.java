@@ -1,28 +1,28 @@
 package ext;
 
-import core.Member;
-import core.NotificationDTO;
-import core.Notificator;
-import core.Task;
+import core.Observer;
 import jakarta.mail.MessagingException;
+import java.util.Map;
 
-public class EmailNotificator implements Notificator {
-
-    @Override
-    public void update(NotificationDTO notificationDTO) {
-        notify(notificationDTO);
-    }
+public class EmailNotificator implements Observer {
 
     @Override
-    public void notify(NotificationDTO notificationDTO) {
+    public void update(Object event) {
+
+        //\begin{FIXME}
+        var memberEmail = (String) ((Map) event).get("Email");
+        var taskDescription = (String) ((Map) event).get("Task");
+        var memberName = (String) ((Map) event).get("Name");
+        //\end{FIXME}
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     new Email(
-                            notificationDTO.getMember().getEmail(),
+                            memberEmail,
                             String.format("TASkOcupado: Tenés una nueva tarea!"),
-                            String.format("Hola %s:\n\nSe te asignó la tarea %s.\n\nTASkOcupado,\nSaludos!", notificationDTO.getMember().getName(), notificationDTO.getTask().getDescription())
+                            String.format("Hola %s:\n\nSe te asignó la tarea %s.\n\nTASkOcupado,\nSaludos!", memberName, taskDescription)
                     ).send();
                 } catch (MessagingException ex) {
                     System.out.println(ex);
@@ -30,13 +30,6 @@ public class EmailNotificator implements Notificator {
                 }
             }
         }).start();
-        //go end
-        System.out.println("Soy EmailNotificator y me notificaron: \n" + notificationDTO.getMessage());
-    }
-
-    @Override
-    public String toString() {
-        return "Email notification";
     }
 
 }

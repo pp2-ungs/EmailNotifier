@@ -1,23 +1,14 @@
 package ext;
 
-import core.Member;
-import core.NotificationDTO;
-import core.Notificator;
-import core.Task;
+import core.Observer;
 
 // Para mí, en este proyecto debería ir una sola extensión.
 // DELETEME
-public class SMSNotificator implements Notificator {
+public class SMSNotificator implements Observer {
 
     @Override
-    public void update(NotificationDTO notificationDTO) {
-        notify(notificationDTO);
-    }
-
-    @Override
-    public void notify(NotificationDTO notificationDTO) {
-        // TODO: how's this different from the other one?
-        System.out.println("Soy SMSNotificator y me notificaron: \n" + notificationDTO.getMessage());
+    public void update(Object event) {
+        System.out.println("Soy SMSNotificator y me notificaron: \n" + event);
     }
 
     @Override
