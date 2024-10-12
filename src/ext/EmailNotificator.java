@@ -1,10 +1,12 @@
 package ext;
 
+import annotation.Notificator;
 import observer.Observer;
 import jakarta.mail.MessagingException;
 import java.io.IOException;
 import java.util.Map;
 
+@Notificator
 public class EmailNotificator implements Observer {
     
     private Map<String, String> membersEmails;
@@ -38,11 +40,6 @@ public class EmailNotificator implements Observer {
                 System.out.println("?email not working");
             }
         }).start();
-    }
-
-    @Override
-    public String getName() {
-        return "Email notification";
     }
 
 }
