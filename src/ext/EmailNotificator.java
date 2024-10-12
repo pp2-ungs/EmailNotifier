@@ -40,4 +40,9 @@ public class EmailNotificator implements Observer {
         }).start();
     }
 
+    @Override
+    public String getName() {
+        return "Email notification";
+    }
+
 }
