@@ -1,17 +1,17 @@
 package ext;
 
-import annotation.Notificator;
 import observer.Observer;
 import jakarta.mail.MessagingException;
 import java.io.IOException;
 import java.util.Map;
+import annotation.Notifier;
 
-@Notificator
-public class EmailNotificator implements Observer {
+@Notifier
+public class EmailNotifier implements Observer {
     
     private Map<String, String> membersEmails;
     
-    public EmailNotificator() {
+    public EmailNotifier() {
         try {
             membersEmails = EmailFinder.getEmailMap(); 
         } catch (IOException ex) {
@@ -22,10 +22,9 @@ public class EmailNotificator implements Observer {
     @Override
     public void update(Object event) {
         
-        // begin{FIXME?}
         String taskDescription = (String) ((Map) event).get("Task");
         String memberName = (String) ((Map) event).get("Name");
-        // end{FIXME}
+        
         String memberEmail = membersEmails.get(memberName);
 
         new Thread(() -> {
