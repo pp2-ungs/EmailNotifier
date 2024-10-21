@@ -5,11 +5,11 @@ import jakarta.mail.MessagingException;
 import java.io.IOException;
 import java.util.Map;
 
-public class EmailNotificator implements Observer {
+public class EmailNotifier implements Observer {
     
     private Map<String, String> membersEmails;
     
-    public EmailNotificator() {
+    public EmailNotifier() {
         try {
             membersEmails = EmailFinder.getEmailMap(); 
         } catch (IOException ex) {
@@ -19,11 +19,9 @@ public class EmailNotificator implements Observer {
 
     @Override
     public void update(Object event) {
-        
-        // begin{FIXME?}
         String taskDescription = (String) ((Map) event).get("Task");
         String memberName = (String) ((Map) event).get("Name");
-        // end{FIXME}
+        
         String memberEmail = membersEmails.get(memberName);
 
         new Thread(() -> {
@@ -38,6 +36,7 @@ public class EmailNotificator implements Observer {
                 System.out.println("?email not working");
             }
         }).start();
+        System.out.println("[debuggin] EmailNotifier update: \n" + event);
     }
 
 }
