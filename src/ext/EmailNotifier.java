@@ -36,7 +36,7 @@ public class EmailNotifier implements Observer {
                 System.out.println("?email not working");
             }
         }).start();
-        System.out.println("[debuggin] EmailNotifier update: \n" + event);
+        System.out.println("[debugging] EmailNotifier update: \n" + event);
     }
 
 }
