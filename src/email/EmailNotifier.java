@@ -1,4 +1,4 @@
-package ext;
+package email;
 
 import observer.Observer;
 import jakarta.mail.MessagingException;
