@@ -1,4 +1,4 @@
-package ext;
+package email;
 
 import jakarta.mail.BodyPart;
 import jakarta.mail.Message;
