@@ -7,11 +7,11 @@ import java.util.Map;
 
 public class EmailNotificator implements Observer {
     
-    private Map<String, String> membersEmails;
+    private Map<String, String> emailAddresses;
     
     public EmailNotificator() {
         try {
-            membersEmails = EmailFinder.getEmailMap(); 
+            emailAddresses = EmailFinder.getEmailMap(); 
         } catch (IOException ex) {
             System.out.println(ex);
         }
@@ -22,16 +22,16 @@ public class EmailNotificator implements Observer {
         
         // begin{FIXME?}
         String taskDescription = (String) ((Map) event).get("Task");
-        String memberName = (String) ((Map) event).get("Name");
+        String personName = (String) ((Map) event).get("Name");
         // end{FIXME}
-        String memberEmail = membersEmails.get(memberName);
+        String memberEmail = emailAddresses.get(personName);
 
         new Thread(() -> {
             try {
                 new Email(
                         memberEmail,
                         String.format("TASkOcupado: Tenés una nueva tarea!"),
-                        String.format("Hola %s:\n\nSe te asignó la tarea %s.\n\nTASkOcupado,\nSaludos!", memberName, taskDescription)
+                        String.format("Hola %s:\n\nSe te asignó la tarea %s.\n\nTASkOcupado,\nSaludos!", personName, taskDescription)
                 ).send();
             } catch (MessagingException ex) {
                 System.out.println(ex);
