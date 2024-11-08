@@ -4,8 +4,9 @@ import observer.Observer;
 import jakarta.mail.MessagingException;
 import java.io.IOException;
 import java.util.Map;
+import notifier.Notifier;
 
-public class EmailNotifier implements Observer {
+public class EmailNotifier implements Notifier {
 
     private Map<String, String> emailAddresses;
 
