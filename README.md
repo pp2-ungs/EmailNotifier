@@ -1,6 +1,22 @@
 # EmailNotifier
 
-A Java library module that provides email notification functionality for the **TASkOcupado** task management system. It integrates with the core application via the Observer pattern to send email notifications whenever a task is assigned to a user.
+Java library that sends email notifications when a task is assigned to a user in the **TASkOcupado** system.
+
+© 2024 [Ebertz](https://github.com/xebertz), [López](https://github.com/Gonza-JL), [Rondelli](https://github.com/rondelli)
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [How It Works](#how-it-works)
+- [Configuration](#configuration)
+- [Dependencies](#dependencies)
+- [Building](#building)
+- [Requirements](#requirements)
+
+---
 
 ## Overview
 
@@ -43,19 +59,6 @@ Place an `Email.json` file in the resources directory defined by `Settings.RESOU
   "Bob":   "bob@example.com"
 }
 ```
-
-### SMTP credentials
-
-The sender credentials are currently defined in `Email.java`:
-
-| Setting | Value |
-|---------|-------|
-| Sender address | `taskocupado@gmail.com` |
-| SMTP host | `smtp.gmail.com` |
-| SMTP port | `465` (SSL) |
-| Authentication | Gmail App Password |
-
-> **Note:** Consider moving the credentials to an external configuration file or environment variable rather than hardcoding them in source.
 
 ## Dependencies
 
