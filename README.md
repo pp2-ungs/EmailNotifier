@@ -1,8 +1,8 @@
 # EmailNotifier
 
-Java library that sends email notifications when a task is assigned to a user in the **TASkOcupado** system.
+A Java library module that provides email notification functionality for the **TASkOcupado** task management system. It integrates with the core application via the Observer pattern to send email notifications whenever a task is assigned to a user.
 
-© 2024 [Ebertz](https://github.com/xebertz), [López](https://github.com/Gonza-JL), [Rondelli](https://github.com/rondelli)
+© 2024 <a href="https://github.com/xebertz">Ebertz</a>, <a href="https://github.com/Gonza-JL">López</a>, <a href="https://github.com/rondelli">Rondelli</a>
 
 ---
 
